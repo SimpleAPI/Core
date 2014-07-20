@@ -1,2 +1,2 @@
-Core
-====
+SimpleAPI - Core
+================
