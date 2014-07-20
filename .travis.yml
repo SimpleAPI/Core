@@ -1,0 +1,40 @@
+# see http://about.travis-ci.org/docs/user/languages/php/ for more hints
+language: php
+
+# list any PHP version you want to test against
+php:
+  # aliased to a recent 5.4.x version
+  - 5.3
+  - 5.3.3
+  - 5.4
+  - 5.5
+
+before_install:
+  - composer self-update
+
+#  - pear channel-discover pear.phpmd.org
+#  - pear channel-discover pear.pdepend.org
+install:
+  - pear channel-discover pear.phpunit.de
+  - pear install pear/PHP_CodeSniffer
+
+# execute any number of scripts before the test run, custom env's are available as variables
+before_script:
+  - echo "extension=apc.so" > .myconfig.ini
+  - echo "date.timezone = 'Europe/Paris'" >> .myconfig.ini
+  - phpenv config-add .myconfig.ini
+  - composer install --dev
+  - phpenv rehash
+
+script:
+  - phpcs --standard=PEAR sources/
+  - ./vendor/bin/phpmd sources/ text codesize,design,naming,unusedcode
+  - ./vendor/bin/phpcpd sources/
+  - ./vendor/bin/phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml
+
+
+# Notifications
+notifications:
+  email:
+    - knocka.a@gmail.com
+    - raphythegeek@gmail.com
