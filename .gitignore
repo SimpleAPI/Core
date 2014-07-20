@@ -1,1 +1,7 @@
 /vendor/
+
+# System files
+.DS_Store
+*~
+.idea
+.idea/*
