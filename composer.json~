@@ -12,7 +12,4 @@
     "require": {
 
     }
-    "autoload": {
-        "psr-4": { "SimpleAPI\\Core\\": "sources/", "SimpleAPI\\Core\\Tests\\": "tests/" }
-    }
 }
