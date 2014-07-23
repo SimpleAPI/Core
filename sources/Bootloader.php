@@ -41,7 +41,7 @@ class Bootloader
      */
     public static function registerAutoloader()
     {
-        spl_autoload_register(array('Autoloader', 'autoload'));
+        spl_autoload_register(array('\SimpleAPI\Core\Autoloader', 'autoload'));
     }
 
     /**
@@ -104,7 +104,7 @@ class Bootloader
         }
         Bootloader::checkAllowedOrigin();
         Bootloader::setHeaders();
-        Sabre\HTTP\Sapi::sendResponse(self::$response);
+        \Sabre\HTTP\Sapi::sendResponse(self::$response);
     }
 
 }
