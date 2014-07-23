@@ -43,7 +43,7 @@ class Router
      */
     protected function __construct()
     {
-        $this->altoRouter = new AltoRouter();
+        $this->altoRouter = new \AltoRouter();
         if (isset(Configuration::$config['router.base.path']) && !empty(Configuration::$config['router.base.path'])) {
             $this->altoRouter->setBasePath(Configuration::$config['router.base.path']);
         }
