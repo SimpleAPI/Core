@@ -7,8 +7,8 @@
  * @category Exception
  * @package  Core
  * @author   Antoine Knockaert <antoine.knockaert@epitech.eu>
- * @license  GPL v3
- * @link     http://jenkins.knck.eu
+ * @license  MIT
+ * @link     https://github.com/SimpleAPI
  */
 
 namespace SimpleAPI\Core\Exceptions;
@@ -19,8 +19,8 @@ namespace SimpleAPI\Core\Exceptions;
  * @category Exception
  * @package  Core
  * @author   Antoine Knockaert <antoine.knockaert@epitech.eu>
- * @license  GPL v3
- * @link     http://jenkins.knck.eu
+ * @license  MIT
+ * @link     https://github.com/SimpleAPI
  */
 class StopException extends \Exception
 {
