@@ -27,7 +27,7 @@ before_script:
   - phpenv rehash
 
 script:
-  - phpcs --standard=PEAR sources/
+#  - phpcs --standard=PEAR sources/
   - ./vendor/bin/phpmd sources/ text codesize,design,naming,unusedcode
   - ./vendor/bin/phpcpd sources/
   - ./vendor/bin/phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml

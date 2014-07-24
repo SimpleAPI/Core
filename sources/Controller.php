@@ -37,7 +37,7 @@ class Controller
      */
     protected function __construct()
     {
-
+        $this->response = new Response();
     }
 
     /**
