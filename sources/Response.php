@@ -13,7 +13,7 @@
 
 namespace SimpleAPI\Core;
 
-use SimpleAPI\Core\Interfac\IResponse;
+use SimpleAPI\Core\Interfaces\IResponse;
 
 /**
  * Class Response
