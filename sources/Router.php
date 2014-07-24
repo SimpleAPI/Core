@@ -14,6 +14,7 @@
 namespace SimpleAPI\Core;
 
 use SimpleAPI\Core\Exceptions\FrameworkException;
+use SimpleAPI\Core\Exceptions\NotFoundException;
 
 /**
  * Class Router
@@ -94,24 +95,20 @@ class Router
     {
         $route = $this->altoRouter->match($url, $method);
         if (!$route) {
-            Bootloader::setResponse(404, json_encode(array('error' => ((isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ($url != null) ? $url : "") . ' is not reachable')));
-
-            return;
+            throw new NotFoundException(((isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ($url != null) ? $url : "") . ' is not reachable');
         }
         if (!isset($route['target']['c']) || !isset($route['target']['a']) || !isset($route['params'])) {
-            Bootloader::setResponse(500, json_encode(array('error' => 'Internal Framework Error. [!BAD_ROUTER_TARGET]')));
-
-            return;
+            throw new FrameworkException('Internal Framework Error. [!BAD_ROUTER_TARGET]', 001);
         }
         if (is_callable(array($route['target']['c'], 'getInstance'))) {
             $controller = $route['target']['c']::getInstance();
             if (method_exists($controller, $route['target']['a'])) {
                 call_user_func(array($controller, $route['target']['a']), array_values($route['params']));
             } else {
-                throw new FrameworkException(500, 'Internal Framework Error. [METHOD_DOES_NOT_EXISTS]', 003);
+                throw new FrameworkException('Internal Framework Error. [METHOD_DOES_NOT_EXISTS]', 002);
             }
         } else {
-            throw new FrameworkException(500, 'Internal Framework Error. [CONTROLLER_DOES_NOT_EXISTS]', 004);
+            throw new FrameworkException('Internal Framework Error. [CONTROLLER_DOES_NOT_EXISTS]', 003);
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Framework Exception
+ * NotFound Exception
  *
  * PHP Version 5.4
  *
@@ -14,7 +14,7 @@
 namespace SimpleAPI\Core\Exceptions;
 
 /**
- * Class FrameworkException
+ * Class NotFoundException
  *
  * @category Exception
  * @package  Core
@@ -22,10 +22,10 @@ namespace SimpleAPI\Core\Exceptions;
  * @license  MIT
  * @link     https://github.com/SimpleAPI
  */
-class FrameworkException extends HTTPException
+class NotFoundException extends HTTPException
 {
 
-    public function __construct($message, $error_code) {
-        parent::__construct(500, $message, $error_code);
+    public function __construct($message) {
+        parent::__construct(404, $message, null);
     }
 }
