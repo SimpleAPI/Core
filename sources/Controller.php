@@ -37,6 +37,7 @@ class Controller
      */
     protected function __construct()
     {
+        echo "Hello, i'm the constructor";
         $this->response = new Response();
     }
 
