@@ -24,7 +24,7 @@ use SimpleAPI\Core\Response;
  * @license  MIT
  * @link     https://github.com/SimpleAPI
  */
-class SimpleAPIException extends \Exception
+class HTTPException extends \Exception
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Stop Exception
+ * Framework Exception
  *
  * PHP Version 5.4
  *
@@ -14,7 +14,7 @@
 namespace SimpleAPI\Core\Exceptions;
 
 /**
- * Class StopException
+ * Class FrameworkException
  *
  * @category Exception
  * @package  Core
@@ -22,7 +22,7 @@ namespace SimpleAPI\Core\Exceptions;
  * @license  MIT
  * @link     https://github.com/SimpleAPI
  */
-class StopException extends HTTPException
+class FrameworkException extends HTTPException
 {
 
     public function __construct($code, $message, $error_code) {

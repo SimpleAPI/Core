@@ -13,6 +13,8 @@
 
 namespace SimpleAPI\Core;
 
+use SimpleAPI\Core\Exceptions\FrameworkException;
+
 /**
  * Class Router
  *
@@ -90,7 +92,6 @@ class Router
      */
     public function run($url = null, $method = null)
     {
-        Bootloader::resetResponse();
         $route = $this->altoRouter->match($url, $method);
         if (!$route) {
             Bootloader::setResponse(404, json_encode(array('error' => ((isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ($url != null) ? $url : "") . ' is not reachable')));
@@ -106,18 +107,11 @@ class Router
             $controller = $route['target']['c']::getInstance();
             if (method_exists($controller, $route['target']['a'])) {
                 call_user_func(array($controller, $route['target']['a']), array_values($route['params']));
-                if (!Bootloader::getResponse() instanceof \Sabre\HTTP\ResponseInterface) {
-                    Bootloader::setResponse(500, json_encode(array('error' => 'Internal Framework Error. [NO_RESPONSE_SET]')));
-                }
             } else {
-                Bootloader::setResponse(500, json_encode(array('error' => 'Internal Framework Error. [METHOD_DOES_NOT_EXISTS]')));
-
-                return;
+                throw new FrameworkException(500, 'Internal Framework Error. [METHOD_DOES_NOT_EXISTS]', 003);
             }
         } else {
-            Bootloader::setResponse(500, json_encode(array('error' => 'Internal Framework Error. [CONTROLLER_DOES_NOT_EXISTS]')));
-
-            return;
+            throw new FrameworkException(500, 'Internal Framework Error. [CONTROLLER_DOES_NOT_EXISTS]', 004);
         }
     }
 }

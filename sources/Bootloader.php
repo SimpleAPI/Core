@@ -38,13 +38,13 @@ class Bootloader
      */
     private static function checkAllowedOrigin()
     {
-        if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], Configuration::$config['security.allowedDomains'])) {
-            self::$response->setHeader('Access-Control-Allow-Headers', $_SERVER['HTTP_ORIGIN']);
-            self::$response->setHeader('Access-Control-Allow-Origin', $_SERVER['HTTP_ORIGIN']);
-            self::$response->setHeader('Access-Control-Allow-Credentials', 'true');
-            self::$response->setHeader('Access-Control-Allow-Headers', $_SERVER['HTTP_ORIGIN']);
-        }
-        self::$response->setHeader('Access-Control-Allow-Methods', 'GET,POST');
+//        if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], Configuration::$config['security.allowedDomains'])) {
+//            self::$response->setHeader('Access-Control-Allow-Headers', $_SERVER['HTTP_ORIGIN']);
+//            self::$response->setHeader('Access-Control-Allow-Origin', $_SERVER['HTTP_ORIGIN']);
+//            self::$response->setHeader('Access-Control-Allow-Credentials', 'true');
+//            self::$response->setHeader('Access-Control-Allow-Headers', $_SERVER['HTTP_ORIGIN']);
+//        }
+//        self::$response->setHeader('Access-Control-Allow-Methods', 'GET,POST');
     }
 
     /**
@@ -52,11 +52,11 @@ class Bootloader
      */
     private static function setHeaders()
     {
-        self::$response->setHeader('Content-Type', 'text/html; charset=utf-8');
-        self::$response->setHeader('Pragma', 'no-cache');
-        self::$response->setHeader('Cache-Control', 'no-cache, must-revalidate');
-        self::$response->setHeader('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-        self::$response->setHeader('Content-type', 'application/json');
+//        self::$response->setHeader('Content-Type', 'text/html; charset=utf-8');
+//        self::$response->setHeader('Pragma', 'no-cache');
+//        self::$response->setHeader('Cache-Control', 'no-cache, must-revalidate');
+//        self::$response->setHeader('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
+//        self::$response->setHeader('Content-type', 'application/json');
     }
 
     /**
@@ -66,7 +66,7 @@ class Bootloader
     {
         Bootloader::checkAllowedOrigin();
         Bootloader::setHeaders();
-        \Sabre\HTTP\Sapi::sendResponse(self::$response);
+        //\Sabre\HTTP\Sapi::sendResponse(self::$response);
     }
 
 }
