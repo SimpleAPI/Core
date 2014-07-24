@@ -104,6 +104,7 @@ class Router
             $controller = $route['target']['c']::getInstance();
             if (method_exists($controller, $route['target']['a'])) {
                 call_user_func(array($controller, $route['target']['a']), array_values($route['params']));
+                Debugger::var_dump($controller);
                 $controller->response->send();
             } else {
                 throw new FrameworkException('Internal Framework Error. [METHOD_DOES_NOT_EXISTS]', 002);
