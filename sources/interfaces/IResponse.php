@@ -12,7 +12,7 @@
  * @link     https://github.com/SimpleAPI
  */
 
-namespace SimpleAPI\Core\Interfac;
+namespace SimpleAPI\Core\Interfacesss;
 
 /**
  * Interface IResponse

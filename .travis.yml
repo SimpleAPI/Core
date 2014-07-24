@@ -31,9 +31,3 @@ script:
   - ./vendor/bin/phpmd sources/ text codesize,design,naming,unusedcode
   - ./vendor/bin/phpcpd sources/
   - ./vendor/bin/phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml
-
-
-# Notifications
-notifications:
-  email:
-    - knocka.a@gmail.com
