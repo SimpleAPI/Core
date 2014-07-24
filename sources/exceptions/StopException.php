@@ -22,7 +22,10 @@ namespace SimpleAPI\Core\Exceptions;
  * @license  MIT
  * @link     https://github.com/SimpleAPI
  */
-class StopException extends \Exception
+class StopException extends SimpleAPIException
 {
 
+    public function __construct($code, $message, $error_code = null) {
+        parent::__construct($code, $message, $error_code);
+    }
 }

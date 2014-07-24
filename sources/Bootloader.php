@@ -26,17 +26,6 @@ class Bootloader
 {
 
     /**
-     * The response to send
-     *
-     * @var Sabre\HTTP\Response
-     */
-    private static $response = null;
-
-    public static function resetResponse() {
-        self::$response = null;
-    }
-
-    /**
      * Register the framework autoloader to php
      */
     public static function registerAutoloader()
@@ -71,37 +60,10 @@ class Bootloader
     }
 
     /**
-     * Set the response
-     *
-     * @param integer $code The status code of the response
-     * @param string $body The body of the response
-     *
-     * @internal param \Sabre\HTTP\Response $response The response which will be sent
-     */
-    public static function setResponse($code, $body = "") {
-        if (Configuration::$config['mode'] === "production") {
-            $body = ")]}',\n" . $body;
-        }
-        self::$response = new \Sabre\HTTP\Response($code, array(), $body);
-    }
-
-    /**
-     * Return the current response
-     *
-     * @return \Sabre\HTTP\Response
-     */
-    public static function getResponse() {
-        return self::$response;
-    }
-
-    /**
      * Send the response to the client if not already sent
      */
     public static function render()
     {
-        if (!self::$response instanceof \Sabre\HTTP\ResponseInterface) {
-            self::setResponse(500, json_encode(array('error' => 'Internal Framework Error. [NO_RESPONSE_SET]')));
-        }
         Bootloader::checkAllowedOrigin();
         Bootloader::setHeaders();
         \Sabre\HTTP\Sapi::sendResponse(self::$response);

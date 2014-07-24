@@ -13,6 +13,8 @@
 
 namespace SimpleAPI\Core;
 
+use SimpleAPI\Core\Exceptions\StopException;
+
 /**
  * Class Controller
  *
@@ -26,6 +28,19 @@ class Controller
 {
 
     /**
+     * @var \SimpleApi\Core\IResponse The response to send
+     */
+    public $response;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+
+    }
+
+    /**
      * Halt the current framework execution by throwing a HTTP error + message
      *
      * @param int    $code          The HTTP code to use for the response
@@ -35,8 +50,7 @@ class Controller
      */
     public function halt($code, $error_message)
     {
-        Bootloader::setResponse($code, json_encode(array('error' => $error_message)));
-        throw new StopException();
+        throw new StopException($code, $error_message);
     }
 
 }
