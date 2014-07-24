@@ -23,6 +23,6 @@
         "sebastian/phpcpd": "*"
     },
     "autoload": {
-        "psr-4": { "SimpleAPI\\Core\\": "sources/", "SimpleAPI\\Core\\Tests\\": "tests/" , "SimpleAPI\\Core\\Exceptions\\": "sources/exceptions/"}
+        "psr-4": { "SimpleAPI\\Core\\": "sources/", "SimpleAPI\\Core\\Tests\\": "tests/" , "SimpleAPI\\Core\\Exceptions\\": "sources/exceptions/", "SimpleAPI\\Core\\Interfaces": "sources/interfaces/"}
     }
 }
