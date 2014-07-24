@@ -25,7 +25,7 @@ namespace SimpleAPI\Core\Exceptions;
 class StopException extends HTTPException
 {
 
-    public function __construct($code, $message, $error_code) {
+    public function __construct($code, $message, $error_code = null) {
         parent::__construct($code, $message, $error_code);
     }
 }

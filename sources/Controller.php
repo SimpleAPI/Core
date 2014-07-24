@@ -50,7 +50,7 @@ class Controller
      */
     public function halt($code, $error_message)
     {
-        throw new StopException($code, $error_message);
+        throw new StopException($code, $error_messages);
     }
 
 }
