@@ -28,9 +28,16 @@ class Bootloader
     /**
      * Register the framework autoloader to php
      */
-    public static function registerAutoloader()
+    private static function registerAutoloader()
     {
         spl_autoload_register(array('\SimpleAPI\Core\Autoloader', 'autoload'));
+    }
+
+    private static function handlePHPErrors() {
+        if (isset(Configuration::$config['mode']) && Configuration::$config['mode'] == "development") {
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+        }
     }
 
     /**
@@ -47,26 +54,9 @@ class Bootloader
 //        self::$response->setHeader('Access-Control-Allow-Methods', 'GET,POST');
     }
 
-    /**
-     * Add headers to the response
-     */
-    private static function setHeaders()
-    {
-//        self::$response->setHeader('Content-Type', 'text/html; charset=utf-8');
-//        self::$response->setHeader('Pragma', 'no-cache');
-//        self::$response->setHeader('Cache-Control', 'no-cache, must-revalidate');
-//        self::$response->setHeader('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-//        self::$response->setHeader('Content-type', 'application/json');
-    }
-
-    /**
-     * Send the response to the client if not already sent
-     */
-    public static function render()
-    {
-        Bootloader::checkAllowedOrigin();
-        Bootloader::setHeaders();
-        //\Sabre\HTTP\Sapi::sendResponse(self::$response);
+    public static function boot() {
+        self::registerAutoloader();
+        self::handlePHPErrors();
     }
 
 }

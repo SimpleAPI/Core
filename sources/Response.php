@@ -63,7 +63,23 @@ class Response implements IResponse
     }
 
     public function send() {
+        $this->finalize();
+    }
 
+    private function finalize() {
+        // Add headers here
+        $this->setHeader('Content-Type', 'application/json; charset=utf-8');
+        $this->setHeader('Pragma', 'no-cache');
+        $this->setHeader('Cache-Control', 'no-cache, must-revalidate');
+        $this->setHeader('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
+
+        if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], Configuration::$config['security.allowedDomains'])) {
+            $this->setHeader('Access-Control-Allow-Headers', $_SERVER['HTTP_ORIGIN']);
+            $this->setHeader('Access-Control-Allow-Origin', $_SERVER['HTTP_ORIGIN']);
+            $this->setHeader('Access-Control-Allow-Credentials', 'true');
+            $this->setHeader('Access-Control-Allow-Headers', $_SERVER['HTTP_ORIGIN']);
+        }
+        $this->setHeader('Access-Control-Allow-Methods', 'GET,POST');
     }
 
 }
