@@ -28,7 +28,7 @@ class Controller
 {
 
     /**
-     * @var \SimpleApi\Core\IResponse The response to send
+     * @var \SimpleApi\Interfaces\IResponse The response to send
      */
     public $response;
 
