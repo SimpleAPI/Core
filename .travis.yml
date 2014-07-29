@@ -28,6 +28,6 @@ before_script:
 
 script:
 #  - phpcs --standard=PEAR sources/
-  - ./vendor/bin/phpmd sources/ text codesize,design,naming,unusedcode
+  - ./vendor/bin/phpmd sources/ text design,naming,unusedcode
   - ./vendor/bin/phpcpd sources/
   - ./vendor/bin/phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml
