@@ -95,7 +95,14 @@ class Router
     {
         $route = $this->altoRouter->match($url, $method);
         if (!$route) {
-            throw new NotFoundException(((isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ($url != null) ? $url : "/") . ' is not reachable');
+            if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
+                $message = $_SERVER['REQUEST_URI'] . ' is not reachable';
+            } else if ($url != null) {
+                $message = $url . ' is not reachable';
+            } else {
+                $message = 'This route is not reachable';
+            }
+            throw new NotFoundException($message);
         }
         if (!isset($route['target']['c']) || !isset($route['target']['a']) || !isset($route['params'])) {
             throw new FrameworkException('Internal Framework Error. [!BAD_ROUTER_TARGET]', 001);
