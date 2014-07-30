@@ -14,7 +14,6 @@
     "require": {
         "php": ">=5.3.0",
         "altorouter/altorouter": "v1.1.0",
-        "sabre/http" : "~2.0.0",
         "j4mie/paris": "v1.4.2"
     },
     "require-dev": {
